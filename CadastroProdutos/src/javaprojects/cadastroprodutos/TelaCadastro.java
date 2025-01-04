@@ -185,10 +185,16 @@ public class TelaCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        
 
         DefaultTableModel tabela = (DefaultTableModel) tableListagem.getModel();
         tabela.addRow(new Object[]{txtId.getValue(), txtNomeProduto.getText(), txtValorProduto.getValue(), txtQuantidade.getText()});
+        
+        // Reset fields on form
+        txtId.setText(null);
+        txtNomeProduto.setText(null);
+        txtValorProduto.setText(null);
+        txtQuantidade.setText(null);
+        txtDescricaoProduto.setText(null);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void tableListagemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableListagemMouseClicked
@@ -196,10 +202,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         int selecionado = tableListagem.getSelectedRow();
         DefaultTableModel tabela = (DefaultTableModel) tableListagem.getModel();
         txtId.setText(tabela.getValueAt(selecionado, 0).toString());
-        txtNomeProduto.setText(tabela.getValueAt(selecionado, 0).toString());
-        txtValorProduto.setText(tabela.getValueAt(selecionado, 0).toString());
-        txtQuantidade.setText(tabela.getValueAt(selecionado, 0).toString());
-
+        txtNomeProduto.setText(tabela.getValueAt(selecionado, 1).toString());
+        txtValorProduto.setText(tabela.getValueAt(selecionado, 2).toString());
+        txtQuantidade.setText(tabela.getValueAt(selecionado, 3).toString());
+        
+       
     }//GEN-LAST:event_tableListagemMouseClicked
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
