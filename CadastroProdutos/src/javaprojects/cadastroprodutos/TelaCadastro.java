@@ -193,22 +193,26 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
 
-        DefaultTableModel tabela = (DefaultTableModel) tableListagem.getModel();
-        tabela.addRow(new Object[]{txtId.getValue(), txtNomeProduto.getText(), txtValorProduto.getValue(), txtQuantidade.getText()});
-
-        if (txtId.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Voce precisa inserir um ID válido", "", JOptionPane.ERROR_MESSAGE);
-        } else if (txtNomeProduto.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Voce precisa inserir um nome válido", "", JOptionPane.ERROR_MESSAGE);
-        } else if (txtValorProduto.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Voce precisa inserir um valor válido", "", JOptionPane.ERROR_MESSAGE);
-        } else if (txtQuantidade.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Voce precisa inserir uma quantidade válida", "", JOptionPane.ERROR_MESSAGE);
+        
+        try {
+            
+            if (txtId.getText().trim().isEmpty()) {
+                throw new Exception ("Voce precisa inserir um ID válido");
+            } else if (txtNomeProduto.getText().trim().isEmpty()) {
+                throw new Exception ("Voce precisa inserir um nome válido");
+            } else if (txtValorProduto.getText().trim().isEmpty()) {
+                throw new Exception ("Voce precisa inserir um valor válido");
+            } else if (txtQuantidade.getText().trim().isEmpty()) {
+                throw new Exception ("Voce precisa inserir um valor válido");
+            }
+            DefaultTableModel tabela = (DefaultTableModel) tableListagem.getModel();
+            tabela.addRow(new Object[]{txtId.getValue(), txtNomeProduto.getText(), txtValorProduto.getValue(), txtQuantidade.getText()});
+            JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso", "", JOptionPane.DEFAULT_OPTION);
+            // Reset fields on form
+            limparCampos();
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
-
-        // Reset fields on form
-        limparCampos();
-        //JOptionPane.showMessageDialog(null, "Produto adiconado", "", JOptionPane.DEFAULT_OPTION);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void tableListagemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableListagemMouseClicked
