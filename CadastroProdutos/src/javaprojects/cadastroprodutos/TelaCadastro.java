@@ -11,6 +11,14 @@ public class TelaCadastro extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
+
+    public void limparCampos() {
+        txtId.setText(null);
+        txtNomeProduto.setText(null);
+        txtValorProduto.setText(null);
+        txtQuantidade.setText(null);
+        txtDescricaoProduto.setText(null);
+    }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -104,22 +112,21 @@ public class TelaCadastro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(211, 211, 211)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(89, 89, 89)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(136, 136, 136)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(136, 136, 136)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)))
                                 .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,9 +154,9 @@ public class TelaCadastro extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addContainerGap(68, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -188,13 +195,20 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         DefaultTableModel tabela = (DefaultTableModel) tableListagem.getModel();
         tabela.addRow(new Object[]{txtId.getValue(), txtNomeProduto.getText(), txtValorProduto.getValue(), txtQuantidade.getText()});
-        
+
+        if (txtId.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Voce precisa inserir um ID válido", "", JOptionPane.ERROR_MESSAGE);
+        } else if (txtNomeProduto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Voce precisa inserir um nome válido", "", JOptionPane.ERROR_MESSAGE);
+        } else if (txtValorProduto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Voce precisa inserir um valor válido", "", JOptionPane.ERROR_MESSAGE);
+        } else if (txtQuantidade.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Voce precisa inserir uma quantidade válida", "", JOptionPane.ERROR_MESSAGE);
+        }
+
         // Reset fields on form
-        txtId.setText(null);
-        txtNomeProduto.setText(null);
-        txtValorProduto.setText(null);
-        txtQuantidade.setText(null);
-        txtDescricaoProduto.setText(null);
+        limparCampos();
+        //JOptionPane.showMessageDialog(null, "Produto adiconado", "", JOptionPane.DEFAULT_OPTION);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void tableListagemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableListagemMouseClicked
@@ -205,21 +219,22 @@ public class TelaCadastro extends javax.swing.JFrame {
         txtNomeProduto.setText(tabela.getValueAt(selecionado, 1).toString());
         txtValorProduto.setText(tabela.getValueAt(selecionado, 2).toString());
         txtQuantidade.setText(tabela.getValueAt(selecionado, 3).toString());
-        
-       
+
+
     }//GEN-LAST:event_tableListagemMouseClicked
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
 
         int i = tableListagem.getSelectedRow();
         DefaultTableModel tabela = (DefaultTableModel) tableListagem.getModel();
+
         if (i >= 0) {
             tabela.setValueAt(txtId.getText(), i, 0);
             tabela.setValueAt(txtNomeProduto.getText(), i, 1);
             tabela.setValueAt(txtValorProduto.getText(), i, 2);
             tabela.setValueAt(txtQuantidade.getText(), i, 3);
-        }
-        else {
+            JOptionPane.showMessageDialog(null, "Produto editado com sucesso", "", JOptionPane.DEFAULT_OPTION);
+        } else {
             JOptionPane.showMessageDialog(null, "Error");
         }
     }//GEN-LAST:event_btnEditarActionPerformed
