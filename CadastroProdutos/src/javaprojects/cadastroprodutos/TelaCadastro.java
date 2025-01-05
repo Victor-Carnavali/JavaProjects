@@ -235,9 +235,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 throw new Exception("Voce precisa inserir um valor válido");
             } else if (txtQuantidade.getText().trim().isEmpty()) {
                 throw new Exception("Voce precisa inserir uma quantidade válido");
-            } else if (txtId.getValue().equals(tableListagem)){
-                throw new Exception("ID já informado");    
-            }
+            } 
             
             
             DefaultTableModel tabela = (DefaultTableModel) tableListagem.getModel();
