@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="CadastroProdutos">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/CadastroProdutos/dist/CadastroProdutos.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

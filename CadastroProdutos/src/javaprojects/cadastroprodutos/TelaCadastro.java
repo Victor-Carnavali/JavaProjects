@@ -200,8 +200,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                                 .addComponent(btnUp, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(168, 168, 168)
-                            .addComponent(jLabel8)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel8))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(127, 127, 127)
                             .addComponent(jLabel7)))
@@ -257,11 +256,12 @@ public class TelaCadastro extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(checkBox, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar)
@@ -312,7 +312,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 throw new Exception("Voce precisa inserir uma quantidade válido");
             }
 
-            DefaultTableModel tabela = (DefaultTableModel) tableListagem.getModel();
+            tabela = (DefaultTableModel) tableListagem.getModel();
             tabela.addRow(new Object[]{txtNomeProduto.getText(), txtValorProduto.getText(), txtQuantidade.getText()});
             JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso", "", JOptionPane.DEFAULT_OPTION);
             // Reset fields on form
